@@ -1,2 +1,0 @@
-This simple site estimates how much calories you consume/burn. 
-It will tell you if you have eaten more than you've burned
