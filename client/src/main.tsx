@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
-import "./index.css";
+import "./globals.css";
 import Login from "./pages/account/login/login.tsx";
 import Rapport from "./pages/rapport/rapport.tsx";
 import CreateRapport from "./pages/rapport/create-rapport.tsx";

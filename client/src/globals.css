@@ -15,6 +15,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
+  --primary-color: #D52941;
+  --secondary-color: #990D35;
 }
 
 a {
@@ -51,8 +55,10 @@ h1 {
 h2 {
   font-size: 1.6em;
   font-weight: bold;
-
+  color: #990D35;
 }
+
+h3 {}
 
 h1,
 h2,
@@ -93,6 +99,12 @@ input {
   border: 1px #8F8F8F solid;
   border-radius: 5px;
   padding: 0.4em 0.8em;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-text-fill-color: #000 !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 
