@@ -1,4 +1,8 @@
+import { useContext, useState } from "react";
+import { CaloriesFormContext } from "../../context/calories-form-context";
+
 export default function FoodSelector(props) {
+  // Temporary solution until I can find a good API that provides a list of food
   const foodSelectorList = [
     { id: 1, name: "Apple", calories: 95, type: "fruits" },
     { id: 2, name: "Banana", calories: 105, type: "fruits" },
@@ -308,34 +312,85 @@ export default function FoodSelector(props) {
     { id: 300, name: "Protein Shake", calories: 220, type: "drinks" },
   ];
 
+  const caloriesForm = useContext(CaloriesFormContext);
+  const selectedFoodList = caloriesForm.calorieIntake;
+
   function handleClick(number: number) {
     const selectedFood = foodSelectorList[number];
-    props.addFood(selectedFood);
-  }
-  return (
-    <section className="w-1/2">
-      <div className="flex justify-between">
-        <ul className="flex">
-          <li className="text-[#9A9A9A] font-bold">Fruits</li>
-        </ul>
-        <form action="">
-          <input type="text" name="" id="" placeholder="Search..." />
-        </form>
-      </div>
 
-      <ul className="h-50 overflow-y-scroll p-5 border">
-        {foodSelectorList.map((food, index) => (
-          <li>
-            <button
-              className="p-1 bg-white"
-              onClick={() => handleClick(index)}
-              key={index}
-            >
-              {food.name} +
-            </button>
-          </li>
-        ))}
-      </ul>
-    </section>
+    const found = selectedFoodList.find(
+      (element) => element.name == selectedFood.name
+    );
+
+    if (!found) {
+      selectedFoodList.push({ ...selectedFood, count: 1 });
+    } else {
+      found.count += 1;
+    }
+  }
+
+  /**
+   * Adds the (grouped) array to the useState.
+   */
+  function finalizeSelection() {
+    caloriesForm.setCalorieIntake(() => selectedFoodList);
+    props.setShowSelector(false);
+  }
+
+  /**
+   * Groups similar items together for a better user interface
+   * @param foodList
+   */
+  // function groupList() {
+  //   return selectedFoodList.reduce((accumulator, item) => {
+  //     const found = accumulator.find((element) => element.name == item.name);
+
+  //     if (!found) {
+  //       accumulator.push({ ...item, count: 1 });
+  //     } else {
+  //       found.count += 1;
+  //     }
+
+  //     return accumulator;
+  //   }, []);
+  // }
+
+  return (
+    <div className="absolute bg-black/40 top-0 left-0 size-full">
+      <div className="bg-white absolute top-20 left-50 w-200 p-10">
+        <div className="flex justify-between">
+          <ul className="flex">
+            <li className="text-[#9A9A9A] font-bold">Fruits</li>
+          </ul>
+          <form action="">
+            <input type="text" name="" id="" placeholder="Search..." />
+          </form>
+        </div>
+
+        <ul className="h-50 overflow-y-scroll">
+          {foodSelectorList.map((food, index) => (
+            <li>
+              <button
+                className="p-1 bg-white"
+                onClick={() => handleClick(index)}
+                key={index}
+              >
+                {food.name} +
+              </button>
+            </li>
+          ))}
+        </ul>
+        <button onClick={() => finalizeSelection(selectedFoodList)}>
+          Done
+        </button>
+        <button
+          onClick={() => {
+            props.setShowSelector(false);
+          }}
+        >
+          Close
+        </button>
+      </div>
+    </div>
   );
 }

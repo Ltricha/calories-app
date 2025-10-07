@@ -1,26 +1,25 @@
 import { Link } from "react-router";
-import { useContext, useState, createContext } from "react";
+import { useState } from "react";
 import CalorieIntake from "../../components/forms/calorie-form/calorie-intake";
 import CalorieLoss from "../../components/forms/calorie-form/calorie-loss";
 import Sidebar from "../../layout/sidebar";
-
-export const CalorieFormContext = createContext(null);
+import CaloriesFormContextProvider from "../../context/calories-form-context";
 
 export default function CreateRapport() {
   const [index, setIndex] = useState(0);
 
-  const [calorieIntake, setCalorieIntake] = useState({
-    morning: [],
-    afternoon: [],
-    evening: [],
-  });
+  // const [calorieIntake, setCalorieIntake] = useState({
+  //   morning: [],
+  //   afternoon: [],
+  //   evening: [],
+  // });
 
-  const [calorieLoss, setCalorieLoss] = useState({});
+  // const [calorieLoss, setCalorieLoss] = useState({});
 
-  const value = {
-    calorieIntake,
-    setCalorieIntake,
-  };
+  // const value = {
+  //   calorieIntake,
+  //   setCalorieIntake,
+  // };
 
   // const setCalorieIntake = (calorieIntake: number) => {
   //   calorieFormData.calorieIntake = calorieIntake;
@@ -35,19 +34,18 @@ export default function CreateRapport() {
         <div className="max-w-3/4 mx-auto">
           <h1>Make a new rapport</h1>
           {/* <span>Calorie Intake: {calorieFormData.calorieIntake}</span> */}
-          <CalorieFormContext value={value}>
-            {index === 0 ? (
-              <CalorieIntake setCalorieIntake={setCalorieIntake} />
-            ) : (
-              <CalorieLoss />
-            )}
-          </CalorieFormContext>
+
+          <CaloriesFormContextProvider>
+            {index === 0 ? <CalorieIntake /> : <CalorieLoss />}
+          </CaloriesFormContextProvider>
 
           <div className="mx-auto flex justify-between">
             <Link to="/rapport">
-              <button>Back</button>
+              <button className="default-btn">Back</button>
             </Link>
-            <button onClick={() => setIndex(1)}>Next</button>
+            <button className="default-btn" onClick={() => setIndex(1)}>
+              Next
+            </button>
           </div>
         </div>
       </main>

@@ -19,19 +19,23 @@ export default function Dashboard() {
         <section>
           <div className="max-w-3/4 mx-auto">
             <h2 className="">Today's rapport</h2>
+            <p>
+              You're doing great. You did not consume more calories than needed.
+              Keep it up and you'll maintain a healthy weight.
+            </p>
             <div className="flex justify-between">
-              <div className="w-[200px] h-[150px] shadow-xl p-5 bg-white border-b-2 border-[#D52941]">
-                <h3>Calorie intake</h3>
-                <p className="text-lg">N/A</p>
+              <div className="w-[400px] h-[150px] shadow-xl p-5 bg-white border-b-2 border-[#D52941]">
+                <h3 className="font-bold">Calories gained</h3>
+                <p className="text-lg">1000 kcal</p>
               </div>
-              <div className="w-[200px] h-[150px] shadow-xl p-5 bg-white  border-b-2 border-[#D52941]">
-                <h3>Calorie loss</h3>
-                <p className="text-lg">N/A</p>
+              <div className="w-[400px] h-[150px] shadow-xl p-5 bg-white  border-b-2 border-[#D52941]">
+                <h3 className="font-bold">Daily calorie need (estimate)</h3>
+                <p className="text-lg">1500 kcal</p>
               </div>
-              <div className="w-[200px] h-[150px] shadow-xl p-5 bg-white  border-b-2 border-[#D52941]">
+              {/* <div className="w-[200px] h-[150px] shadow-xl p-5 bg-white  border-b-2 border-[#D52941]">
                 <h3>BMI estimate</h3>
                 <p className="text-lg">N/A</p>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>

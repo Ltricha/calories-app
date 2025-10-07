@@ -13,6 +13,16 @@ export default function Rapport() {
           </Link>
           <section></section>
         </div>
+
+        <section>
+          <div className="max-w-3/4 mx-auto">
+            <h2>Have a consistent diet? </h2>
+            <p>
+              Rapport here what you normally eat every day and it will
+              automatically be added to the daily rapport.
+            </p>
+          </div>
+        </section>
       </main>
     </div>
   );

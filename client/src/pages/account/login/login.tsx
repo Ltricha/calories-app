@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../hooks/auth-provider";
 import { useNavigate } from "react-router";
+
 import Cookies from "js-cookie";
 
 export default function Login() {
@@ -14,10 +15,10 @@ export default function Login() {
    *@param event
    * When the user clicks on submit
    */
-  async function handleSubmit(event) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.currentTarget);
 
     // Data from the sign in form.
     const data = {
